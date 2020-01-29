@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Hatayama</string>
+    <string name="title_flag">Flags</string>
+    <string name="title_quiz">Quiz</string>
+    <string name="title_about">About</string>
+    <string name="country_no_data">Data not available for this country yet!</string>
+    <string name="next_question">Next Question</string>
+</resources>

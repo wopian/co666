@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_flag_black_24dp"
+        android:contentDescription="@string/title_flag"
+        android:title="@string/title_flag" />
+    <item
+        android:id="@+id/list"
+        android:icon="@drawable/ic_assignment_black_24dp"
+        android:contentDescription="@string/title_quiz"
+        android:title="@string/title_quiz" />
+</menu>

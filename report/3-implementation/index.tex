@@ -1,0 +1,166 @@
+\chapter{Implementation}
+\graphicspath{{3-implementation/images/}}
+\clearpage
+
+\section{Project Setup}
+
+For the project, it was decided that Kotlin would be most suitable to develop with as it is a first-class language for Android development \cite{VergeKotlin}. In Mobile Systems, Java was used and due to the minimum SDK requirements lead to many implementations having to be reworked to use older Java 6-7 methods for built-in methods, often at the expense of simplicity. This decision to use Kotlin ultimately resulted in a pain-free development experience using up-to-date language features without sacrificing compatibility with older Android devices.
+
+The application was setup with a Fragment-based \cite{Fragments} scaffold which also provided the bottom-navigation implementation with some minor adjustmenets needed to switch between views with Fragment actions instead of loading views directly by their unique identifiers, this allowed carrying state, the country code and quiz results, with ease.
+
+(Figure \ref{fig:clicklisten}, pp \pageref{fig:clicklisten})
+
+(Figure \ref{fig:studio5}, pp \pageref{fig:studio5}.
+Figure \ref{fig:studio1}, pp \pageref{fig:studio1})
+
+\section{Flag Components}
+
+After setting up the project and adding version control, the first component to be implemented was the landing page that displays the list of continents. The component was implemented with a grid layout that is dynamically populated on application load. The country flag list was also implemented in a similar way, with a linear layout being utilised instead. For the initial implementation the country codes and flag details were hard-coded in. An initial attempt at converting the hardcoded values into a SQLite-backed database was made using Room, but was not able to get the models setup for the live demonstrations. Each card on the country and continent lists are re-usable fragments.
+
+(Figure \ref{fig:gridlayout}, pp \pageref{fig:gridlayout})
+
+(Figure \ref{fig:studio4}, pp \pageref{fig:studio4}.
+Figure \ref{fig:studio2}, pp \pageref{fig:studio2}.
+Figure \ref{fig:studio3}, pp \pageref{fig:studio3})
+
+(Figure \ref{fig:app4}, pp \pageref{fig:app4}.
+Figure \ref{fig:app3}, pp \pageref{fig:app3}.
+Figure \ref{fig:app6}, pp \pageref{fig:app6}.
+Figure \ref{fig:app7}, pp \pageref{fig:app7})
+
+\clearpage
+\section{Quiz Components}
+
+Quizzes were implemented to allow text and image-based questions with four possible answers. The four answer options are shuffled before being rendered to reduce the likelihood of multiple questions in a row having the correct answer in the same position. The implementation of the quizzes was intended to be randomly generated from the flag details from an SQLite database. Quiz answers are randomly sorted on initialisation and mapped to a enumrable value in an indexed array with the enumerable value allowing the correct answer to be mapped to the correct option at run time.
+
+(Figure \ref{fig:quizrand}, pp \pageref{fig:quizrand})
+
+As the quiz questions are randomly picked from a list, the progressed state needed to be tracked. To do this a second list is initialised with the first index being dropped on each subsequent question. Once the cloned list no longer has any quizzes in it, the results would then be able to be shown to the user with their score and correct/incorrect answers.
+
+(Figure \ref{fig:quizstate}, pp \pageref{fig:quizstate})
+
+(Figure \ref{fig:studio6}, pp \pageref{fig:studio6})
+
+(Figure \ref{fig:app8}, pp \pageref{fig:app8}.
+Figure \ref{fig:app1}, pp \pageref{fig:app1}.
+Figure \ref{fig:app5}, pp \pageref{fig:app5}.
+Figure \ref{fig:app2}, pp \pageref{fig:app2})
+
+\clearpage
+\section{Figures}
+
+\captionsetup{type=figure}\captionof{figure}{Navigating to the list of countries}
+\label{fig:clicklisten}
+\subfile{pyg/src/setOnClickListener}
+
+\captionsetup{type=figure}\captionof{figure}{Grid Layout used in a RecycleView}
+\label{fig:gridlayout}
+\subfile{pyg/src/gridLayout}
+
+\captionsetup{type=figure}\captionof{figure}{Quiz answer randomisation}
+\label{fig:quizrand}
+\subfile{pyg/src/Quiz}
+
+\captionsetup{type=figure}\captionof{figure}{Quiz State}
+\label{fig:quizstate}
+\subfile{pyg/src/Quizzes}
+
+\begin{figure}[H]
+  \caption{App - Landing Page}
+  \label{fig:app4}
+  \centering
+  \includegraphics[width=.75\linewidth]{app-4}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{App - Country Flag List}
+  \label{fig:app3}
+  \centering
+  \includegraphics[width=.75\linewidth]{app-3}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{App - Country Flag List (flag proportions)}
+  \label{fig:app6}
+  \centering
+  \includegraphics[width=.75\linewidth]{app-6}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{App - Flag Details}
+  \label{fig:app7}
+  \centering
+  \includegraphics[width=.75\linewidth]{app-7}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{App - Quiz}
+  \label{fig:app8}
+  \centering
+  \includegraphics[width=.75\linewidth]{app-8}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{App - Quiz Question with Image}
+  \label{fig:app1}
+  \centering
+  \includegraphics[width=.75\linewidth]{app-1}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{App - Quiz Question (correct user answer (green))}
+  \label{fig:app5}
+  \centering
+  \includegraphics[width=.75\linewidth]{app-5}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{App - Quiz Question (incorrect user answer (red) and correct answer (yellow))}
+  \label{fig:app2}
+  \centering
+  \includegraphics[width=.75\linewidth]{app-2}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{Android Studio - Project Source Structure}
+  \label{fig:studio5}
+  \centering
+  \includegraphics[width=.75\linewidth]{studio-5}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{Android Studio - Project Resources Structure}
+  \label{fig:studio1}
+  \centering
+  \includegraphics[width=.75\linewidth]{studio-1}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{Android Studio - Fragment Layout (Continent list item)}
+  \label{fig:studio4}
+  \centering
+  \includegraphics[width=.9\linewidth]{studio-4}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{Android Studio - Fragment Layout (Flag list item)}
+  \label{fig:studio2}
+  \centering
+  \includegraphics[width=.9\linewidth]{studio-2}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{Android Studio - Fragment Layout (Flag details)}
+  \label{fig:studio3}
+  \centering
+  \includegraphics[width=.9\linewidth]{studio-3}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{Android Studio - Fragment Layout (Quiz question)}
+  \label{fig:studio6}
+  \centering
+  \includegraphics[width=.9\linewidth]{studio-6}
+\end{figure}
+
+

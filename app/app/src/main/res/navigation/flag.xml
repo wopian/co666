@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home"
+    app:startDestination="@+id/titleScreen">
+
+    <fragment
+        android:id="@+id/titleScreen"
+        android:name="me.wopian.module.hatayama.flagScreen.Continents"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_continents">
+        <action
+            android:id="@+id/action_continents_to_countries"
+            app:destination="@id/aboutScreen"/>
+        <argument
+            android:name="TO_CONTINENT"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutScreen"
+        android:name="me.wopian.module.hatayama.flagScreen.Countries"
+        android:label="@string/title_about"
+        tools:layout="@layout/fragment_countries">
+        <action
+            android:id="@+id/action_countries_to_country"
+            app:destination="@id/countryScreen"/>
+        <action
+            android:id="@+id/action_countries_to_no_country"
+            app:destination="@id/noCountryScreen"/>
+        <argument
+            android:name="TO_CONTINENT"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/countryScreen"
+        android:name="me.wopian.module.hatayama.flagScreen.Country"
+        android:label="Country"
+        tools:layout="@layout/fragment_country"
+        />
+    <fragment
+        android:id="@+id/noCountryScreen"
+        android:name="me.wopian.module.hatayama.flagScreen.CountryNoData"
+        android:label="Country"
+        tools:layout="@layout/fragment_no_country"
+        />
+</navigation>
